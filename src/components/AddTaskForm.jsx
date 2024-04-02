@@ -3,12 +3,13 @@ import { useState } from "react";
 function AddTaskForm ({ addTask }) {
     const [text, setText] = useState("");
     
-    function handleSubmit(e) {
-        e.preventDefault();        
+    const handleSubmit =(e) => {
+        e.preventDefault();
         if (!text.trim()) return;
         addTask(text);
         setText("")
-    };
+    }
+    
     return (
         <form onSubmit={handleSubmit}>
             <input 

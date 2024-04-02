@@ -11,11 +11,11 @@ const App = () => {
   ]);
 
   const addTask = (text) => {
-    setTasks([...tasks, {id:tasks.length +1,text, completed: false}]);
+    setTasks([...tasks, {id:text + tasks.length +1,text, completed: false}]);
     };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task)=> task.id !== id));
+  const deleteTask = (deleteId) => {
+    setTasks(tasks.filter((task)=> task.id !== deleteId));
   };
 
   const toggleComplete = (taskId) => {
@@ -29,16 +29,19 @@ const App = () => {
     <>
     <h1>Lista de Tareas</h1>
       <AddTaskForm addTask={addTask} />
+      <ul>
       {tasks.map(task => (
-        <Task 
-          key={task.id} 
-          id={task.id} 
-          text={task.text} 
-          completed={task.completed} 
-          deleteTask={deleteTask} 
-          toggleComplete={toggleComplete} 
+        <Task
+        task={task.text} 
+        completed={task.completed} 
+        key={task.id} 
+        id={task.id} 
+        deleteTask={deleteTask} 
+        toggleComplete={toggleComplete} 
         />
+        
       ))}
+      </ul>
     </>
   );
 };
